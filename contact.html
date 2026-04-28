@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Vsnexos — Get in Touch</title>
+    <meta name="description" content="Contact the Vsnexos team for bug reports, feature suggestions, API access, business enquiries, or general questions about our free web tools.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: rgba(17, 24, 39, 0.65);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-hover: #60a5fa;
+            --glass-blur: blur(16px);
+        }
+        body {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(167, 139, 250, 0.15), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        h1 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: var(--primary); }
+        h3 { font-size: 1.3rem; margin-top: 2rem; margin-bottom: 0.5rem; color: #fff; }
+        p { color: var(--text-muted); margin-bottom: 1rem; }
+        a { color: var(--primary); text-decoration: none; transition: color 0.2s;}
+        a:hover { color: var(--primary-hover); text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 2rem; font-weight: 600; }
+        .contact-box { background: rgba(30, 41, 59, 0.5); padding: 1.5rem; border-radius: 12px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Tools</a>
+        <h1>Get in Touch</h1>
+        
+        <p>We are a small team and we genuinely read every message. Whether you found a bug, have a feature idea, want to discuss API access, or just want to say the tool helped you — we want to hear from you.</p>
+        
+        <div class="contact-box">
+            <h3>General enquiries and bug reports</h3>
+            <p><a href="mailto:business@vsnexos.com">business@vsnexos.com</a></p>
+            <p><strong>Response time:</strong> We typically reply within 24–48 hours on weekdays.</p>
+        </div>
+
+        <h3>What to include in your message:</h3>
+        <p>If you are reporting a bug, please include which tool you were using, what you expected to happen, what actually happened, and your browser and device type. This helps us fix issues much faster.</p>
+        
+        <h3>API and business enquiries:</h3>
+        <p>If you are interested in high-volume API access for WhoHosts, white-label tool arrangements, or partnership opportunities, email <a href="mailto:business@vsnexos.com">business@vsnexos.com</a> with "Business Enquiry" in the subject line.</p>
+        
+        <h3>Feature requests:</h3>
+        <p>We build what users ask for. If there is a tool you wish existed or a feature missing from an existing tool, tell us. We have built multiple features based on direct user feedback.</p>
+        
+        <p><em>We do not offer phone support. Email is the fastest and most reliable way to reach us.</em></p>
+    </div>
+</body>
+</html>

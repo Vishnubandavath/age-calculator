@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Vsnexos</title>
+    <meta name="description" content="Learn about Vsnexos, the team behind free, premium web tools like WhoHosts, Age Calculator and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: rgba(17, 24, 39, 0.65);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary-hover: #60a5fa;
+            --glass-blur: blur(16px);
+        }
+        body {
+            font-family: 'Outfit', 'Inter', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(167, 139, 250, 0.15), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0; padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        h1, h2 { font-family: 'Space Grotesk', sans-serif; color: var(--primary); }
+        h1 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; }
+        h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--text-main); }
+        p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.05rem;}
+        a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--primary-hover); text-decoration: underline; }
+        .back-link { display: inline-block; margin-bottom: 2rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Tools</a>
+        <h1>About Vsnexos</h1>
+        
+        <h2>Who we are</h2>
+        <p>Vsnexos is an independent software and digital experiences studio run by a passionate team of developers dedicated to building highly polished, extremely fast, and completely free web tools. We believe that everyday utilities — from domain lookups to simple calculators — shouldn't look like they were built twenty years ago. Our mission is to combine premium, modern design aesthetics with rapid, reliable engineering.</p>
+        
+        <h2>Why we build free tools</h2>
+        <p>We started Vsnexos out of frustration. Too often, when we needed a quick answer like finding domain ownership details or calculating exact time differences, we encountered websites bloated with popups, terrible user interfaces, or hidden paywalls. We decided to build the tools we wanted to use ourselves.</p>
+        <p>Today, our portfolio includes tools like WhoHosts (a modern RDAP Domain and DNS lookup utility), Cube Crasher (a soothing browser-based arcade game), Voxt (a smart YouTube transcript extractor), and our popular premium Age Calculator.</p>
+        
+        <h2>Our Engineering Philosophy</h2>
+        <p>We focus on what we call "Micro-Premium" experiences. Every tool we launch is built to feel responsive, secure, and beautiful. For instance, our Age Calculator doesn't even use a backend server — the entire logic executes locally in your browser to guarantee zero latency and absolute privacy for your personal data.</p>
+        
+        <h2>Support and Sustainability</h2>
+        <p>To keep our applications free forever, we utilize non-intrusive display advertising. This offsets our server costs, domain registrations, and development time. We greatly appreciate our users who tolerate these small ads so that we can keep iterating and delivering high-quality web software to the world.</p>
+        
+        <p>If you like what we're building, or if there's a tool you wish existed, please <a href="contact.html">let us know</a>!</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Two Ages - Age Calculator</title>
+    <meta name="description" content="Compare the age of two people. Find out who is older and the exact age difference.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --surface-color: rgba(17, 24, 39, 0.65);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-light: #cbd5e1;
+            --radius: 12px;
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.2);
+            --shadow-md: 0 10px 15px -3px rgba(0,0,0,0.3), 0 4px 6px -2px rgba(0,0,0,0.2);
+            --glass-blur: blur(16px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(167, 139, 250, 0.15), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--surface-border);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            z-index: 10;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 2px 10px rgba(167, 139, 250, 0.2);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--primary-hover); }
+
+        main {
+            flex: 1;
+            width: 100%;
+            max-width: 700px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            z-index: 1;
+        }
+
+        @media (min-width: 800px) {
+            main {
+                max-width: 900px;
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+            }
+            .results-box {
+                padding: 2.5rem !important;
+            }
+            .res-line {
+                font-size: 1.15rem;
+                padding: 1.25rem 1.5rem !important;
+            }
+        }
+
+        .card {
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .input-row { grid-template-columns: 1fr; gap: 1.25rem; }
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        
+        label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--surface-border);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+            color-scheme: dark;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius);
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        button:hover {
+            box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4);
+            filter: brightness(1.1);
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .results-box {
+            display: none;
+            padding: 1.5rem;
+            background: var(--surface-color);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius);
+            animation: fadeIn 0.4s ease forwards;
+            font-size: 1.05rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .res-line {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .res-line:last-child {
+            margin-bottom: 0;
+        }
+
+        .res-emoji {
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Compare Two Ages</div>
+        <a href="index.html" class="back-link">← Back to Main Calculator</a>
+    </header>
+
+    <main>
+        <div class="card">
+            <div class="input-row">
+                <div class="input-group">
+                    <label>Person A (Name Optional)</label>
+                    <input type="text" id="nameA" placeholder="e.g. John">
+                    <label style="margin-top:0.5rem">Date of Birth</label>
+                    <input type="date" id="dobA" max="">
+                </div>
+                <div class="input-group">
+                    <label>Person B (Name Optional)</label>
+                    <input type="text" id="nameB" placeholder="e.g. Jane">
+                    <label style="margin-top:0.5rem">Date of Birth</label>
+                    <input type="date" id="dobB" max="">
+                </div>
+            </div>
+            <button onclick="compareAges()">Compare Ages Now</button>
+        </div>
+
+        <div id="resultsBox" class="results-box">
+            <!-- Results injected here -->
+        </div>
+    </main>
+
+    <script>
+        // Set max dates
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('dobA').setAttribute('max', today);
+        document.getElementById('dobB').setAttribute('max', today);
+
+        function compareAges() {
+            const dobA_val = document.getElementById('dobA').value;
+            const dobB_val = document.getElementById('dobB').value;
+            let nameA = document.getElementById('nameA').value.trim() || "Person A";
+            let nameB = document.getElementById('nameB').value.trim() || "Person B";
+
+            if (!dobA_val || !dobB_val) {
+                return alert("Please enter Date of Birth for both people.");
+            }
+
+            const dateA = new Date(dobA_val);
+            const dateB = new Date(dobB_val);
+            const resultsBox = document.getElementById('resultsBox');
+
+            if (dateA.getTime() === dateB.getTime()) {
+                resultsBox.innerHTML = `
+                    <div class="res-line">
+                        <span class="res-emoji">🤝</span>
+                        <div><strong>Result:</strong> ${nameA} and ${nameB} are exactly the same age.</div>
+                    </div>
+                `;
+                resultsBox.style.display = 'block';
+                return;
+            }
+
+            // Determine who is older
+            let olderDate, youngerDate, olderName, youngerName;
+            if (dateA < dateB) {
+                olderDate = dateA;
+                youngerDate = dateB;
+                olderName = nameA;
+                youngerName = nameB;
+            } else {
+                olderDate = dateB;
+                youngerDate = dateA;
+                olderName = nameB;
+                youngerName = nameA;
+            }
+
+            // Calculate Difference
+            let y = youngerDate.getFullYear() - olderDate.getFullYear();
+            let m = youngerDate.getMonth() - olderDate.getMonth();
+            
+            let d1 = olderDate.getDate();
+            let d2 = youngerDate.getDate();
+            let prevMonthDays = new Date(youngerDate.getFullYear(), youngerDate.getMonth(), 0).getDate();
+            
+            if (d1 > prevMonthDays) {
+                d1 = prevMonthDays;
+            }
+            
+            let d = d2 - d1;
+            if (d < 0) {
+                d += prevMonthDays;
+                m--;
+            }
+            if (m < 0) {
+                y--;
+                m += 12;
+            }
+
+            // Format Gap String e.g., "1 month 17 days"
+            let gapParts = [];
+            if (y > 0) gapParts.push(`${y} year${y !== 1 ? 's' : ''}`);
+            if (m > 0) gapParts.push(`${m} month${m !== 1 ? 's' : ''}`);
+            if (d > 0) gapParts.push(`${d} day${d !== 1 ? 's' : ''}`);
+            if (gapParts.length === 0) gapParts.push("0 days");
+            
+            let gapFinal = gapParts.join(' ');
+
+            // Inject desired HTML layout
+            let resultHTML = `
+                <div class="res-line">
+                    <span class="res-emoji">👑</span>
+                    <div><strong>Elder Person:</strong> ${olderName}</div>
+                </div>
+                <div class="res-line">
+                    <span class="res-emoji">👶</span>
+                    <div><strong>Younger Person:</strong> ${youngerName}</div>
+                </div>
+                <div class="res-line">
+                    <span class="res-emoji">⏳</span>
+                    <div><strong>Age Gap:</strong> ${gapFinal}</div>
+                </div>
+            `;
+            
+            resultsBox.innerHTML = resultHTML;
+            resultsBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
